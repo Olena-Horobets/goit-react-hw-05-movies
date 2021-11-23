@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/components/MovieCard/MovieCard.css"],"names":[],"mappings":"AAAA,UACE,YAAa,CACb,qBAAsB,CACtB,sBAAuB,CACvB,WAAY,CACZ,kBACF","file":"home-page.1dd1bad6.chunk.css","sourcesContent":[".bookLink {\n  display: flex;\n  flex-direction: column;\n  outline: 2px solid blue;\n  width: 200px;\n  margin-bottom: 30px;\n}\n"]}
