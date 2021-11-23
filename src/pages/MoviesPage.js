@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Route, NavLink, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import * as fetchMoviesAPI from '../services/serviceAPI';
 
 import { MovieCard } from '../components/MovieCard/MovieCard';
 
 function MoviesPage() {
+  const { url } = useRouteMatch();
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
 
@@ -15,7 +16,7 @@ function MoviesPage() {
     }
 
     fetchMoviesAPI
-      .fetchByQuery({ query })
+      .fetchMovieByQuery({ query })
       .then(data => setMovies(data.results));
   }, [query]);
 
@@ -32,7 +33,9 @@ function MoviesPage() {
         <ul>
           {movies.map(el => (
             <li key={el.id}>
-              <MovieCard movie={el} />
+              <Link to={`${url}/${el.id}`}>
+                <MovieCard movie={el} />
+              </Link>
             </li>
           ))}
         </ul>

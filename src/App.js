@@ -10,6 +10,11 @@ const HomePage = lazy(() =>
 const MoviesPage = lazy(() =>
   import('./pages/MoviesPage.js' /* webpackChunkName: "movies-page" */),
 );
+const MovieDetailsPage = lazy(() =>
+  import(
+    './pages/MovieDetailsPage.js' /* webpackChunkName: "movie-details-page" */
+  ),
+);
 
 function App() {
   return (
@@ -23,6 +28,9 @@ function App() {
           </Route>
           <Route path="/movies" exact>
             <MoviesPage />
+          </Route>
+          <Route path="/movies/:movieId">
+            <MovieDetailsPage />
           </Route>
         </Switch>
       </Suspense>

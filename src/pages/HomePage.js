@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route, NavLink, useRouteMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as fetchMoviesAPI from '../services/serviceAPI';
 
 import { MovieCard } from '../components/MovieCard/MovieCard';
@@ -20,7 +20,9 @@ function HomePage() {
         <ul>
           {movies.map(el => (
             <li key={el.id}>
-              <MovieCard movie={el} />
+              <Link to={`/movies/${el.id}`}>
+                <MovieCard movie={el} />
+              </Link>
             </li>
           ))}
         </ul>
