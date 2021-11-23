@@ -17,12 +17,12 @@ function MovieDetailsPage() {
   return (
     <div className="movieCard">
       <h1 style={{ color: 'darkviolet' }}>MOVIE TITLE: {movie.title}</h1>
-      <NavLink to={`${url}/${movieId}/cast`}>CAST</NavLink>{' '}
-      <NavLink to={`${url}/${movieId}/reviews`}>REVIEWS</NavLink>
+      <NavLink to={`${url}/cast`}>CAST</NavLink>{' '}
+      <NavLink to={`${url}/reviews`}>REVIEWS</NavLink>
       <hr />
       <Switch>
-        <Route path={`${path}/:movieId/cast`}>{movie && <Cast />}</Route>
-        <Route path={`${path}/:movieId/reviews`}>{movie && <Reviews />}</Route>
+        <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
+        <Route path={`${path}/reviews`}>{movie && <Reviews />}</Route>
       </Switch>
     </div>
   );
