@@ -5,13 +5,10 @@ const Navigation = () => {
   return (
     <nav>
       <NavLink to="/" exact className="link" activeClassName="activeLink">
-        Main
+        Home
       </NavLink>
-      <NavLink to="/authors" className="link" activeClassName="activeLink">
-        Authors
-      </NavLink>
-      <NavLink to="/books" className="link" activeClassName="activeLink">
-        Books
+      <NavLink to="/movies" className="link" activeClassName="activeLink">
+        Search movies
       </NavLink>
     </nav>
   );

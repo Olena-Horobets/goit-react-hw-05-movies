@@ -1,0 +1,7 @@
+.bookLink {
+  display: flex;
+  flex-direction: column;
+  outline: 2px solid blue;
+  width: 200px;
+  margin-bottom: 30px;
+}

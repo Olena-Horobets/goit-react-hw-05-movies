@@ -1,25 +1,25 @@
-import { Route } from 'react-router';
+import 'App.css';
+import { Route, Switch } from 'react-router';
+import { lazy, Suspense } from 'react';
+
 import { Navigation } from './components/Navigation/Navigation';
-import { Homeview } from './views/HomeView';
-import { AuthorsView } from 'views/AuthorsView';
-import { BooksView } from 'views/BooksView';
+
+const HomePage = lazy(() =>
+  import('./pages/HomePage.js' /* webpackChunkName: "home-page" */),
+);
 
 function App() {
   return (
     <div className="App">
       <Navigation />
 
-      <Route path="/" exact>
-        <Homeview />
-      </Route>
-
-      <Route path="/authors" exact>
-        <AuthorsView />
-      </Route>
-
-      <Route path="/books" exact>
-        <BooksView />
-      </Route>
+      <Suspense fallback={<h4>loading..</h4>}>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
+        </Switch>
+      </Suspense>
     </div>
   );
 }
