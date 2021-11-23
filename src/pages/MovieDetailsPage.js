@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
+import { Route, Switch } from 'react-router';
 import * as fetchMoviesAPI from '../services/serviceAPI';
+import { Cast } from '../components/Cast/Cast';
+import { Reviews } from '../components/Reviews/Reviews';
 
 function MovieDetailsPage() {
+  const { url, path } = useRouteMatch();
   const { movieId } = useParams();
   const [movie, setMovie] = useState({});
 
@@ -13,6 +17,13 @@ function MovieDetailsPage() {
   return (
     <div className="movieCard">
       <h1 style={{ color: 'darkviolet' }}>MOVIE TITLE: {movie.title}</h1>
+      <NavLink to={`${url}/${movieId}/cast`}>CAST</NavLink>{' '}
+      <NavLink to={`${url}/${movieId}/reviews`}>REVIEWS</NavLink>
+      <hr />
+      <Switch>
+        <Route path={`${path}/:movieId/cast`}>{movie && <Cast />}</Route>
+        <Route path={`${path}/:movieId/reviews`}>{movie && <Reviews />}</Route>
+      </Switch>
     </div>
   );
 }
