@@ -3,11 +3,20 @@ const KEY = '6f7abc44fc4837d6e8737cb8523ac04e';
 
 async function fetchWithErrorHandling(url = '', config = {}) {
   const response = await fetch(url, config);
+  console.log(config);
   return response.ok
     ? await response.json()
     : Promise.reject(new Error('Not found'));
 }
 
-export function fetchPopular() {
-  return fetchWithErrorHandling(`${BASE_URL}trending/all/day?api_key=${KEY}`);
+export function fetchPopular({ period }) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}trending/all/${period}?api_key=${KEY}`,
+  );
+}
+
+export function fetchByQuery({ query }) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}search/movie?api_key=${KEY}&language=en-US&page=1&include_adult=false&query=${query}`,
+  );
 }

@@ -7,6 +7,9 @@ import { Navigation } from './components/Navigation/Navigation';
 const HomePage = lazy(() =>
   import('./pages/HomePage.js' /* webpackChunkName: "home-page" */),
 );
+const MoviesPage = lazy(() =>
+  import('./pages/MoviesPage.js' /* webpackChunkName: "movies-page" */),
+);
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <HomePage />
+          </Route>
+          <Route path="/movies" exact>
+            <MoviesPage />
           </Route>
         </Switch>
       </Suspense>

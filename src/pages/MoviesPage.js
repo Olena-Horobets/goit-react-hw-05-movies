@@ -4,18 +4,30 @@ import * as fetchMoviesAPI from '../services/serviceAPI';
 
 import { MovieCard } from '../components/MovieCard/MovieCard';
 
-function HomePage() {
+function MoviesPage() {
+  const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
+    if (!query.trim().length) {
+      setMovies([]);
+      return;
+    }
+
     fetchMoviesAPI
-      .fetchPopular({ period: 'day' })
+      .fetchByQuery({ query })
       .then(data => setMovies(data.results));
-  }, []);
+  }, [query]);
 
   return (
     <div>
-      <h2 className="title">HOMEVIEW</h2>
+      <h2 className="title">search</h2>
+      <input
+        value={query}
+        onChange={e => {
+          setQuery(e.target.value);
+        }}
+      ></input>
       {movies && (
         <ul>
           {movies.map(el => (
@@ -29,4 +41,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default MoviesPage;
