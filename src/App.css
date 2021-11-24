@@ -3,3 +3,9 @@
   justify-self: center;
   background-color: burlywood;
 }
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+}

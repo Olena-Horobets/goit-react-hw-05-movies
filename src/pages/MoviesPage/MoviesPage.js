@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import * as fetchMoviesAPI from '../services/serviceAPI';
+import * as fetchMoviesAPI from '../../services/serviceAPI';
 
-import { MovieCard } from '../components/MovieCard/MovieCard';
+import { MovieCard } from '../../components/MovieCard/MovieCard';
 
 function MoviesPage() {
   const { url } = useRouteMatch();
@@ -30,7 +30,7 @@ function MoviesPage() {
         }}
       ></input>
       {movies && (
-        <ul>
+        <ul className="gallery">
           {movies.map(el => (
             <li key={el.id}>
               <Link to={`${url}/${el.id}`}>

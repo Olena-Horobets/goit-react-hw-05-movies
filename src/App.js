@@ -5,14 +5,16 @@ import { lazy, Suspense } from 'react';
 import { Navigation } from './components/Navigation/Navigation';
 
 const HomePage = lazy(() =>
-  import('./pages/HomePage.js' /* webpackChunkName: "home-page" */),
+  import('./pages/HomePage/HomePage.js' /* webpackChunkName: "home-page" */),
 );
 const MoviesPage = lazy(() =>
-  import('./pages/MoviesPage.js' /* webpackChunkName: "movies-page" */),
+  import(
+    './pages/MoviesPage/MoviesPage.js' /* webpackChunkName: "movies-page" */
+  ),
 );
 const MovieDetailsPage = lazy(() =>
   import(
-    './pages/MovieDetailsPage.js' /* webpackChunkName: "movie-details-page" */
+    './pages/MovieDetailsPage/MovieDetailsPage.js' /* webpackChunkName: "movie-details-page" */
   ),
 );
 

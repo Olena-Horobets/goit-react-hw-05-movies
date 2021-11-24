@@ -1,10 +1,11 @@
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const KEY = '6f7abc44fc4837d6e8737cb8523ac04e';
+export const IMG_URL = 'https://image.tmdb.org/t/p/w342';
 
 async function fetchWithErrorHandling(url = '', config = {}) {
   const response = await fetch(url, config);
 
-  return response.ok
+  return response.status === 200
     ? await response.json()
     : Promise.reject(new Error('Not found'));
 }
