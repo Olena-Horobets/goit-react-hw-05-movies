@@ -26,14 +26,13 @@ function MoviesPage() {
 
   return (
     <div>
-      <h2 className="title">search</h2>
       <input
         value={query}
         onChange={e => {
           setQuery(e.target.value);
         }}
       ></input>
-      {movies && (
+      {movies.length ? (
         <ul className="gallery">
           {movies.map(el => (
             <li className="galleryItem" key={el.id}>
@@ -48,6 +47,8 @@ function MoviesPage() {
             </li>
           ))}
         </ul>
+      ) : (
+        <p>...enter your query</p>
       )}
     </div>
   );

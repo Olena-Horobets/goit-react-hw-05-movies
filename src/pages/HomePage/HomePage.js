@@ -19,13 +19,14 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
-      <h2 className="title">HOMEVIEW</h2>
+    <div className="homeContainer">
+      <h2 className="title">Popular movies</h2>
       {movies && (
         <ul className="gallery">
           {movies.map(el => (
-            <li key={el.id}>
+            <li className="galleryItem" key={el.id}>
               <Link
+                className="galleryLink"
                 to={{
                   pathname: `/movies/${getSlug(el)}`,
                   state: { from: location },
