@@ -6,7 +6,7 @@ export default (
   <div className="loaderContainer">
     <Loader
       type="Circles"
-      color="#00BFFF"
+      color="#FFFFFF"
       height={120}
       width={120}
       radius={130}

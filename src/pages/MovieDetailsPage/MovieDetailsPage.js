@@ -7,7 +7,6 @@ import { parseSlug } from '../../services/serviceSlugify';
 
 import { IMG_URL } from '../../utils/constants';
 import { STATUS } from '../../utils/constants';
-import errorImage from '../../images/errorImage.jpg';
 
 import Cast from 'components/Cast/Cast';
 import Reviews from 'components/Reviews/Reviews';
@@ -70,7 +69,7 @@ function MovieDetailsPage() {
     return <p>enter something</p>;
   }
   if (status === STATUS.REJECTED) {
-    return <img src={errorImage} alt="error message" className="errorImage" />;
+    return <div className="errorImage"></div>;
   }
 }
 
