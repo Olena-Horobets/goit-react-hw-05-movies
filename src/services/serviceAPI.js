@@ -1,6 +1,4 @@
-const BASE_URL = 'https://api.themoviedb.org/3/';
-const KEY = '6f7abc44fc4837d6e8737cb8523ac04e';
-export const IMG_URL = 'https://image.tmdb.org/t/p/w342';
+import { BASE_URL, KEY } from '../utils/constants';
 
 async function fetchWithErrorHandling(url = '', config = {}) {
   const response = await fetch(url, config);
@@ -22,7 +20,7 @@ export function fetchMovieByQuery({ query }) {
   );
 }
 
-export function fetchMovieById({ movieId, onError }) {
+export function fetchMovieById({ movieId }) {
   return fetchWithErrorHandling(
     `${BASE_URL}movie/${movieId}?api_key=${KEY}&language=en-US`,
   );

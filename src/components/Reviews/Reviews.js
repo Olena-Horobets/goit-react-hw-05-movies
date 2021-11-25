@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
-import { useRouteMatch } from 'react-router-dom';
-import * as fetchMoviesAPI from '../../services/serviceAPI';
+import { useParams } from 'react-router-dom';
+
+import { fetchMovieReviews } from '../../services/serviceAPI';
+import { parseSlug } from '../../services/serviceSlugify';
 
 function Reviews() {
-  const {
-    params: { movieId },
-  } = useRouteMatch();
+  const { slug } = useParams();
+  const movieId = parseSlug(slug);
+
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetchMoviesAPI
-      .fetchMovieReviews({ movieId })
+    fetchMovieReviews({ movieId })
       .then(data => setReviews(data.results))
       .catch(err => console.log(err));
   }, [movieId]);
@@ -18,7 +19,7 @@ function Reviews() {
   return (
     <div className="movieCard">
       <h3>Reviews</h3>
-      <p>bla-bla-bla-bla</p>
+
       {reviews && reviews.length ? (
         <ul>
           {reviews.map(el => (
@@ -29,7 +30,7 @@ function Reviews() {
           ))}
         </ul>
       ) : (
-        <p>sorry, there are no reviews</p>
+        <p>no reviews</p>
       )}
     </div>
   );

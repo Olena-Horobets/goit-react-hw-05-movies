@@ -1,6 +1,6 @@
 import 'components/MovieCard/MovieCard.css';
 
-import { IMG_URL } from '../../services/serviceAPI';
+import { IMG_URL } from '../../utils/constants';
 
 function MovieCard({ movie }) {
   return (

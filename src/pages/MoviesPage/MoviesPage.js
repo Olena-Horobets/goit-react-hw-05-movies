@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
-import { Link, useRouteMatch } from 'react-router-dom';
-import * as fetchMoviesAPI from '../../services/serviceAPI';
+import { Link } from 'react-router-dom';
+
+import { fetchMovieByQuery } from '../../services/serviceAPI';
+import { getSlug } from '../../services/serviceSlugify';
 
 import { MovieCard } from '../../components/MovieCard/MovieCard';
 
 function MoviesPage() {
   const location = useLocation();
-  const { url } = useRouteMatch();
+
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
 
@@ -16,9 +18,8 @@ function MoviesPage() {
       setMovies([]);
       return;
     }
-    console.log(location);
-    fetchMoviesAPI
-      .fetchMovieByQuery({ query })
+
+    fetchMovieByQuery({ query })
       .then(data => setMovies(data.results))
       .catch(err => console.log(err));
   }, [query]);
@@ -37,7 +38,10 @@ function MoviesPage() {
           {movies.map(el => (
             <li className="galleryItem" key={el.id}>
               <Link
-                to={{ pathname: `/movies/${el.id}`, state: { from: location } }}
+                to={{
+                  pathname: `/movies/${getSlug(el)}`,
+                  state: { from: location },
+                }}
               >
                 <MovieCard movie={el} />
               </Link>

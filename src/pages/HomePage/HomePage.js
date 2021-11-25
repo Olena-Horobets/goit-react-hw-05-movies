@@ -1,18 +1,11 @@
-import slugify from 'slugify';
-
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+
 import * as fetchMoviesAPI from '../../services/serviceAPI';
+import { getSlug } from '../../services/serviceSlugify';
 
 import { MovieCard } from '../../components/MovieCard/MovieCard';
-
-const getSlug = string => {
-  return slugify(string, {
-    lower: true,
-    strict: true,
-  });
-};
 
 function HomePage() {
   const location = useLocation();
@@ -34,9 +27,7 @@ function HomePage() {
             <li key={el.id}>
               <Link
                 to={{
-                  pathname: `/movies/${getSlug(
-                    `${el.title || el.name} ${el.id}`,
-                  )}`,
+                  pathname: `/movies/${getSlug(el)}`,
                   state: { from: location },
                 }}
               >

@@ -1,6 +1,6 @@
 import 'App.css';
-import { Route, Switch } from 'react-router';
 import { lazy, Suspense } from 'react';
+import { Route, Switch, Redirect } from 'react-router';
 
 import { Navigation } from './components/Navigation/Navigation';
 
@@ -33,6 +33,9 @@ function App() {
           </Route>
           <Route path="/movies/:slug">
             <MovieDetailsPage />
+          </Route>
+          <Route path="*">
+            <Redirect to="/" />
           </Route>
         </Switch>
       </Suspense>
