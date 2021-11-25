@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { Route, Switch, Redirect } from 'react-router';
 
 import { Navigation } from './components/Navigation/Navigation';
+import Loader from './components/Loader';
 
 const HomePage = lazy(() =>
   import('./pages/HomePage/HomePage.js' /* webpackChunkName: "home-page" */),
@@ -23,22 +24,24 @@ function App() {
     <div className="App">
       <Navigation />
 
-      <Suspense fallback={<h4>loading..</h4>}>
-        <Switch>
-          <Route path="/" exact>
-            <HomePage />
-          </Route>
-          <Route path="/movies" exact>
-            <MoviesPage />
-          </Route>
-          <Route path="/movies/:slug">
-            <MovieDetailsPage />
-          </Route>
-          <Route path="*">
-            <Redirect to="/" />
-          </Route>
-        </Switch>
-      </Suspense>
+      <div className="container">
+        <Suspense fallback={Loader}>
+          <Switch>
+            <Route path="/" exact>
+              <HomePage />
+            </Route>
+            <Route path="/movies" exact>
+              <MoviesPage />
+            </Route>
+            <Route path="/movies/:slug">
+              <MovieDetailsPage />
+            </Route>
+            <Route path="*">
+              <Redirect to="/" />
+            </Route>
+          </Switch>
+        </Suspense>
+      </div>
     </div>
   );
 }

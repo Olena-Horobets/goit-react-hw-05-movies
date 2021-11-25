@@ -31,4 +31,4 @@ function Cast() {
   );
 }
 
-export { Cast };
+export default Cast;

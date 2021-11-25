@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
 import { Route, Switch, useLocation, useHistory } from 'react-router';
-import * as fetchMoviesAPI from '../../services/serviceAPI';
+
+import { fetchMovieById } from '../../services/serviceAPI';
 import { parseSlug } from '../../services/serviceSlugify';
 
-import { Cast } from '../../components/Cast/Cast';
-import { Reviews } from '../../components/Reviews/Reviews';
 import { IMG_URL } from '../../utils/constants';
 import { STATUS } from '../../utils/constants';
 import errorImage from '../../images/errorImage.jpg';
+
+import Cast from 'components/Cast/Cast';
+import Reviews from 'components/Reviews/Reviews';
 
 function MovieDetailsPage() {
   const location = useLocation();
@@ -23,8 +25,7 @@ function MovieDetailsPage() {
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
-    fetchMoviesAPI
-      .fetchMovieById({ movieId })
+    fetchMovieById({ movieId })
       .then(data => setMovie(data), setStatus(STATUS.RESOLVED))
       .catch(err => setStatus(STATUS.REJECTED));
   }, [movieId]);
@@ -58,7 +59,6 @@ function MovieDetailsPage() {
         >
           REVIEWS
         </NavLink>
-        <hr />
         <Switch>
           <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
           <Route path={`${path}/reviews`}>{movie && <Reviews />}</Route>
