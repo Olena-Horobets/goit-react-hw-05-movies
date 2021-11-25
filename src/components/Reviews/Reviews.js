@@ -11,7 +11,8 @@ function Reviews() {
   useEffect(() => {
     fetchMoviesAPI
       .fetchMovieReviews({ movieId })
-      .then(data => setReviews(data.results));
+      .then(data => setReviews(data.results))
+      .catch(err => console.log(err));
   }, [movieId]);
 
   return (

@@ -9,3 +9,7 @@
   flex-wrap: wrap;
   width: 100vw;
 }
+
+.galleryItem {
+  width: 400px;
+}

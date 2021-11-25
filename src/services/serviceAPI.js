@@ -22,7 +22,7 @@ export function fetchMovieByQuery({ query }) {
   );
 }
 
-export function fetchMovieById({ movieId }) {
+export function fetchMovieById({ movieId, onError }) {
   return fetchWithErrorHandling(
     `${BASE_URL}movie/${movieId}?api_key=${KEY}&language=en-US`,
   );

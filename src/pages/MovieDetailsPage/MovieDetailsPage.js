@@ -1,25 +1,46 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, useLocation, useHistory } from 'react-router';
 import * as fetchMoviesAPI from '../../services/serviceAPI';
 import { Cast } from '../../components/Cast/Cast';
 import { Reviews } from '../../components/Reviews/Reviews';
 import { IMG_URL } from '../../services/serviceAPI';
 
 function MovieDetailsPage() {
+  const location = useLocation();
+  const history = useHistory();
+  const pastHistory = location?.state?.from;
+
   const { url, path } = useRouteMatch();
-  const { movieId } = useParams();
+  const { slug } = useParams();
+  const movieId = slug.match(/[a-zA-Z0-9]+$/)[0];
+
   const [movie, setMovie] = useState({});
 
+  console.log(movieId);
   useEffect(() => {
-    fetchMoviesAPI.fetchMovieById({ movieId }).then(setMovie);
+    fetchMoviesAPI
+      .fetchMovieById({ movieId })
+      .then(setMovie)
+      .catch(err => console.log(err));
   }, [movieId]);
-  console.log(movie);
+
+  const onGoBackClick = e => {
+    history.push(pastHistory);
+  };
+
   return (
     <div className="movieCard">
       <h1 style={{ color: 'darkviolet' }}>MOVIE TITLE: {movie.title}</h1>
+      {pastHistory && (
+        <button type="button" onClick={onGoBackClick}>
+          back
+        </button>
+      )}
       <img src={`${IMG_URL}${movie.poster_path}`} alt={movie.title}></img>
-      <NavLink to={`${url}/cast`}>CAST</NavLink>{' '}
+      <NavLink to={{ pathname: `${url}/cast`, state: { from: pastHistory } }}>
+        CAST
+      </NavLink>{' '}
       <NavLink to={`${url}/reviews`}>REVIEWS</NavLink>
       <hr />
       <Switch>

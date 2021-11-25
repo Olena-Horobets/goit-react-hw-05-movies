@@ -9,7 +9,10 @@ function Cast() {
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    fetchMoviesAPI.fetchMovieCast({ movieId }).then(data => setCast(data.cast));
+    fetchMoviesAPI
+      .fetchMovieCast({ movieId })
+      .then(data => setCast(data.cast))
+      .catch(err => console.log(err));
   }, [movieId]);
 
   return (
