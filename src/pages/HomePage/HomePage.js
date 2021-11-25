@@ -19,7 +19,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="homeContainer">
+    <>
       <h2 className="title">Popular movies</h2>
       {movies && (
         <ul className="gallery">
@@ -38,7 +38,7 @@ function HomePage() {
           ))}
         </ul>
       )}
-    </div>
+    </>
   );
 }
 

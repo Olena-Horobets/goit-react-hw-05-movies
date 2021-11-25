@@ -1,3 +1,5 @@
+import s from './MoviesPage.module.css';
+
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -25,8 +27,9 @@ function MoviesPage() {
   }, [query]);
 
   return (
-    <div>
+    <>
       <input
+        className={s.input}
         value={query}
         onChange={e => {
           setQuery(e.target.value);
@@ -37,6 +40,7 @@ function MoviesPage() {
           {movies.map(el => (
             <li className="galleryItem" key={el.id}>
               <Link
+                className="galleryLink"
                 to={{
                   pathname: `/movies/${getSlug(el)}`,
                   state: { from: location },
@@ -48,9 +52,9 @@ function MoviesPage() {
           ))}
         </ul>
       ) : (
-        <p>...enter your query</p>
+        <p className={s.searchRequest}>...enter your query</p>
       )}
-    </div>
+    </>
   );
 }
 

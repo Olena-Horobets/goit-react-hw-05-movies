@@ -1,0 +1,27 @@
+.input {
+  width: 600px;
+  height: 40px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  font-size: 18px;
+  border: none;
+  padding: 4px 12px;
+  color: var(--dark-color);
+  background-color: var(--transparent-white);
+  box-shadow: none;
+
+  transform: scale(0.98);
+  transition: transform 130ms ease-in, box-shadow 120ms ease-in;
+}
+
+.input:focus {
+  outline: none;
+  transform: scaleX(1);
+  box-shadow: var(--item-shadow);
+}
+
+.searchRequest {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--transparent-white);
+}

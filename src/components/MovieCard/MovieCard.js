@@ -9,7 +9,11 @@ function MovieCard({ movie }) {
       <div className={s.boxEffect}></div>
       <img
         className={s.movieImg}
-        src={`${IMG_URL}${movie.poster_path}`}
+        src={
+          movie.poster_path
+            ? `${IMG_URL}${movie.poster_path}`
+            : '../../images/fallback-photo.jpg'
+        }
         alt={movie.title}
       ></img>
     </div>
