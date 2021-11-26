@@ -17,28 +17,6 @@
   margin-bottom: 40px;
 }
 
-/* gallery styles */
-.gallery {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.galleryItem {
-  width: calc((100% - 120px) / 4);
-  margin: 15px;
-  box-shadow: var(--item-shadow);
-}
-
-.galleryLink {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
 .errorImage {
   width: 700px;
   height: 600px;
@@ -51,6 +29,9 @@
 }
 
 .loaderContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;

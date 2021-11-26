@@ -2,12 +2,9 @@ import s from './MoviesPage.module.css';
 
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import { fetchMovieByQuery } from 'services/serviceAPI';
-import { getSlug } from 'services/serviceSlugify';
-
-import { MovieCard } from 'components/MovieCard/MovieCard';
+import { Gallery } from 'components/Gallery/Gallery';
 
 function MoviesPage() {
   const location = useLocation();
@@ -38,21 +35,14 @@ function MoviesPage() {
         autoFocus
       ></input>
       {movies.length ? (
-        <ul className="gallery">
-          {movies.map(el => (
-            <li className="galleryItem" key={el.id}>
-              <Link
-                className="galleryLink"
-                to={{
-                  pathname: `/movies/${getSlug(el)}`,
-                  state: { from: location, keyWord: 'search' },
-                }}
-              >
-                <MovieCard movie={el} />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <>
+          <Gallery
+            movies={movies}
+            location={location}
+            keyWord={'search'}
+          ></Gallery>
+          <button></button>
+        </>
       ) : (
         <p className={s.searchRequest}>...enter your query</p>
       )}

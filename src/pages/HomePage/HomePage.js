@@ -2,24 +2,26 @@ import s from './HomePage.module.css';
 
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import * as fetchMoviesAPI from 'services/serviceAPI';
-import { getSlug } from 'services/serviceSlugify';
-
-import { MovieCard } from 'components/MovieCard/MovieCard';
+import { Gallery } from 'components/Gallery/Gallery';
 
 function HomePage() {
   const location = useLocation();
   const [movies, setMovies] = useState([]);
   const [searchPeriod, setSearchPeriod] = useState('day');
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     fetchMoviesAPI
-      .fetchPopular({ period: searchPeriod })
-      .then(data => setMovies(data.results))
+      .fetchPopular({ period: searchPeriod, page })
+      .then(data => {
+        page === 1
+          ? setMovies(data.results)
+          : setMovies(prev => [...prev, ...data.results]);
+      })
       .catch(err => console.log(err));
-  }, [searchPeriod]);
+  }, [page, searchPeriod]);
 
   return (
     <>
@@ -60,21 +62,14 @@ function HomePage() {
       </div>
 
       {movies && (
-        <ul className="gallery">
-          {movies.map(el => (
-            <li className="galleryItem" key={el.id}>
-              <Link
-                className="galleryLink"
-                to={{
-                  pathname: `/movies/${getSlug(el)}`,
-                  state: { from: location, keyWord: 'home' },
-                }}
-              >
-                <MovieCard movie={el} />
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <>
+          <Gallery
+            movies={movies}
+            location={location}
+            keyWord={'home'}
+          ></Gallery>
+          <button></button>
+        </>
       )}
     </>
   );
