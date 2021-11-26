@@ -1,3 +1,5 @@
+import s from './Cast.module.css';
+
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -17,17 +19,19 @@ function Cast() {
   }, [movieId]);
 
   return (
-    <div className="movieCard">
-      <h3>CAST</h3>
-
-      {cast && (
+    <>
+      {cast && cast.length ? (
         <ul>
           {cast.map(el => (
-            <li key={el.id}>{el.name}</li>
+            <li key={el.id} className={s.castItem}>
+              {el.name}
+            </li>
           ))}
         </ul>
+      ) : (
+        <p>currently there is no info</p>
       )}
-    </div>
+    </>
   );
 }
 

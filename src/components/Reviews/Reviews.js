@@ -17,9 +17,7 @@ function Reviews() {
   }, [movieId]);
 
   return (
-    <div className="movieCard">
-      <h3>Reviews</h3>
-
+    <>
       {reviews && reviews.length ? (
         <ul>
           {reviews.map(el => (
@@ -30,9 +28,9 @@ function Reviews() {
           ))}
         </ul>
       ) : (
-        <p>no reviews</p>
+        <p>no reviews are given yet</p>
       )}
-    </div>
+    </>
   );
 }
 

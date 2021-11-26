@@ -1,7 +1,7 @@
 import s from './MovieDetailsPage.module.css';
 import fallbackPhoto from '../../images/fallbackPhoto.jpg';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
 import { Route, Switch, useLocation, useHistory } from 'react-router';
 
@@ -10,9 +10,16 @@ import { parseSlug } from '../../services/serviceSlugify';
 
 import { IMG_URL } from '../../utils/constants';
 import { STATUS } from '../../utils/constants';
+import Loader from 'components/Loader';
 
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
+const Cast = lazy(() =>
+  import('components/Cast/Cast.js' /* webpackChunkName: "cast-page" */),
+);
+const Reviews = lazy(() =>
+  import(
+    'components/Reviews/Reviews.js' /* webpackChunkName: "reviews-page" */
+  ),
+);
 
 function MovieDetailsPage() {
   const location = useLocation();
@@ -49,7 +56,7 @@ function MovieDetailsPage() {
             {`back to ${keyWord}`}
           </button>
         )}
-        {console.log(movie.poster_path)}
+
         <h2 className={s.title}>{movie.title}</h2>
         <div className={s.wrapper}>
           <img
@@ -114,10 +121,14 @@ function MovieDetailsPage() {
             >
               REVIEWS
             </NavLink>
-            <Switch>
-              <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
-              <Route path={`${path}/reviews`}>{movie && <Reviews />}</Route>
-            </Switch>
+            <div className={s.infoWrapper}>
+              <Suspense fallback={Loader}>
+                <Switch>
+                  <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
+                  <Route path={`${path}/reviews`}>{movie && <Reviews />}</Route>
+                </Switch>
+              </Suspense>
+            </div>
           </div>
         </div>
       </div>

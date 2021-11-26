@@ -1,7 +1,7 @@
 .movieCard {
   position: relative;
   width: 100%;
-  padding: 40px 80px;
+  padding: 40px;
 }
 
 .title {
@@ -33,7 +33,7 @@
   composes: btn;
   position: absolute;
   top: 40px;
-  left: 80px;
+  left: 40px;
 }
 
 .wrapper {
@@ -49,12 +49,12 @@
 }
 
 .movieImage {
-  width: 360px;
+  width: 340px;
   height: auto;
 }
 
 .overview {
-  width: calc((100% - 40px) / 3);
+  width: 420px;
 }
 
 .genres {
@@ -108,7 +108,7 @@
 }
 
 .additional {
-  width: calc((100% - 40px) / 3);
+  width: 520px;
   text-align: left;
 }
 
@@ -124,4 +124,8 @@
 
 .activeBtn {
   color: var(--accent-color);
+}
+
+.infoWrapper {
+  padding-top: 30px;
 }
