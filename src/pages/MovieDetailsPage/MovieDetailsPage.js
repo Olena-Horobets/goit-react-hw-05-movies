@@ -1,4 +1,5 @@
 import s from './MovieDetailsPage.module.css';
+import fallbackPhoto from '../../images/fallbackPhoto.jpg';
 
 import { useState, useEffect } from 'react';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
@@ -17,6 +18,7 @@ function MovieDetailsPage() {
   const location = useLocation();
   const history = useHistory();
   const pastHistory = location?.state?.from;
+  const keyWord = location?.state?.keyWord;
 
   const { url, path } = useRouteMatch();
   const { slug } = useParams();
@@ -34,26 +36,32 @@ function MovieDetailsPage() {
   const onGoBackClick = e => {
     history.push(pastHistory);
   };
-  console.log(movie);
+
+  const getGradient = data => {
+    return `#ff4c29 0deg ${data * 36}deg, #ffffff77 ${data * 36}deg 0deg`;
+  };
+
   if (status === STATUS.RESOLVED) {
     return (
       <div className={s.movieCard}>
         {pastHistory && (
           <button className={s.backBtn} type="button" onClick={onGoBackClick}>
-            {`back to ${location.state.keyWord}`}
+            {`back to ${keyWord}`}
           </button>
         )}
-        <h2 className={s.title}>MOVIE TITLE: {movie.title}</h2>
+        {console.log(movie.poster_path)}
+        <h2 className={s.title}>{movie.title}</h2>
         <div className={s.wrapper}>
           <img
             className={s.movieImage}
             src={
               movie.poster_path
                 ? `${IMG_URL}${movie.poster_path}`
-                : '../../images/fallback-photo.jpg'
+                : `${fallbackPhoto}`
             }
             alt={movie.title}
           ></img>
+
           <div className={s.overview}>
             <p>{movie.overview}</p>
             {movie.genres && (
@@ -65,17 +73,42 @@ function MovieDetailsPage() {
                 ))}
               </ul>
             )}
+
+            {movie.vote_average && (
+              <>
+                <h3>Movie rating:</h3>
+                <div
+                  className={s.rating}
+                  style={{
+                    background: `conic-gradient(${getGradient(
+                      movie.vote_average,
+                    )})`,
+                  }}
+                >
+                  <p className={s.ratingNumber}>{`${
+                    movie.vote_average * 10
+                  } %`}</p>
+                </div>
+              </>
+            )}
           </div>
+
           <div className={s.additional}>
             <NavLink
-              to={{ pathname: `${url}/cast`, state: { from: pastHistory } }}
+              to={{
+                pathname: `${url}/cast`,
+                state: { from: pastHistory, keyWord },
+              }}
               className={s.castBtn}
               activeClassName={s.activeBtn}
             >
               CAST
             </NavLink>
             <NavLink
-              to={{ pathname: `${url}/reviews`, state: { from: pastHistory } }}
+              to={{
+                pathname: `${url}/reviews`,
+                state: { from: pastHistory, keyWord },
+              }}
               className={s.reviewsBtn}
               activeClassName={s.activeBtn}
             >

@@ -59,6 +59,7 @@
 
 .genres {
   display: flex;
+  margin-bottom: 30px;
 }
 
 .genresItem {
@@ -69,6 +70,41 @@
   content: '/';
   margin-left: 2px;
   margin-right: 4px;
+}
+
+.rating {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #ffffff77;
+  box-shadow: var(--shadow-reversed);
+  transform: scaleX(-1);
+}
+
+.rating::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: '';
+  display: block;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  box-shadow: inset var(--shadow-reversed);
+  background-color: var(--main-bgr-color);
+}
+
+.ratingNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  margin-bottom: 0;
+  line-height: 1;
+  font-size: 32px;
+  transform: translate(-50%, -50%) scaleX(-1);
 }
 
 .additional {

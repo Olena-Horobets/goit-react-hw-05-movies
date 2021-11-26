@@ -1,4 +1,5 @@
 import s from 'components/MovieCard/MovieCard.module.css';
+import fallbackPhoto from '../../images/fallbackPhoto.jpg';
 
 import { IMG_URL } from '../../utils/constants';
 
@@ -12,7 +13,7 @@ function MovieCard({ movie }) {
         src={
           movie.poster_path
             ? `${IMG_URL}${movie.poster_path}`
-            : '../../images/fallback-photo.jpg'
+            : `${fallbackPhoto}`
         }
         alt={movie.title}
       ></img>
