@@ -4,7 +4,7 @@
   --accent-color: #ff4c29;
   --light-grey-color: #334756;
   --white-color: #ffffff;
-  --transparent-white: #ffffffc9;
+  --transparent-white: #ffffffbb;
 
   --text-shadow: 3px 3px 2px var(--dark-color);
   --item-shadow: 6px 6px 8px var(--dark-color);
@@ -33,4 +33,10 @@ a {
 
 img {
   display: block;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

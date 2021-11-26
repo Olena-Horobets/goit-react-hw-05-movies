@@ -34,6 +34,8 @@ function MoviesPage() {
         onChange={e => {
           setQuery(e.target.value);
         }}
+        autoComplete="off"
+        autoFocus
       ></input>
       {movies.length ? (
         <ul className="gallery">
@@ -43,7 +45,7 @@ function MoviesPage() {
                 className="galleryLink"
                 to={{
                   pathname: `/movies/${getSlug(el)}`,
-                  state: { from: location },
+                  state: { from: location, keyWord: 'search' },
                 }}
               >
                 <MovieCard movie={el} />

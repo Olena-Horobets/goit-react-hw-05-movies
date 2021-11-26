@@ -1,0 +1,91 @@
+.movieCard {
+  position: relative;
+  width: 100%;
+  padding: 40px 80px;
+}
+
+.title {
+  display: inline-block;
+  color: var(--transparent-white);
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+.btn {
+  display: inline-block;
+  color: var(--transparent-white);
+  border: 3px solid;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: transparent;
+
+  transition: color 150ms ease-out;
+}
+
+.btn:hover {
+  color: var(--accent-color);
+}
+
+.backBtn {
+  composes: btn;
+  position: absolute;
+  top: 40px;
+  left: 80px;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  text-align: left;
+  line-height: 1.4;
+  font-size: 20px;
+  color: var(--white-color);
+}
+
+.movieImage {
+  width: 360px;
+  height: auto;
+}
+
+.overview {
+  width: calc((100% - 40px) / 3);
+}
+
+.genres {
+  display: flex;
+}
+
+.genresItem {
+  color: var(--accent-color);
+}
+
+.genresItem:not(:last-child)::after {
+  content: '/';
+  margin-left: 2px;
+  margin-right: 4px;
+}
+
+.additional {
+  width: calc((100% - 40px) / 3);
+  text-align: left;
+}
+
+.castBtn {
+  composes: btn;
+
+  margin-right: 20px;
+}
+
+.reviewsBtn {
+  composes: btn;
+}
+
+.activeBtn {
+  color: var(--accent-color);
+}

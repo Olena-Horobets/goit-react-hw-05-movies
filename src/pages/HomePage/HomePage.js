@@ -29,7 +29,7 @@ function HomePage() {
                 className="galleryLink"
                 to={{
                   pathname: `/movies/${getSlug(el)}`,
-                  state: { from: location },
+                  state: { from: location, keyWord: 'home' },
                 }}
               >
                 <MovieCard movie={el} />

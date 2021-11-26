@@ -1,3 +1,5 @@
+import s from './MovieDetailsPage.module.css';
+
 import { useState, useEffect } from 'react';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
 import { Route, Switch, useLocation, useHistory } from 'react-router';
@@ -32,36 +34,59 @@ function MovieDetailsPage() {
   const onGoBackClick = e => {
     history.push(pastHistory);
   };
-
+  console.log(movie);
   if (status === STATUS.RESOLVED) {
     return (
-      <div className="movieCard">
-        <h1 style={{ color: 'darkviolet' }}>MOVIE TITLE: {movie.title}</h1>
+      <div className={s.movieCard}>
         {pastHistory && (
-          <button type="button" onClick={onGoBackClick}>
-            back
+          <button className={s.backBtn} type="button" onClick={onGoBackClick}>
+            {`back to ${location.state.keyWord}`}
           </button>
         )}
-        <img
-          src={
-            movie.poster_path
-              ? `${IMG_URL}${movie.poster_path}`
-              : '../../images/fallback-photo.jpg'
-          }
-          alt={movie.title}
-        ></img>
-        <NavLink to={{ pathname: `${url}/cast`, state: { from: pastHistory } }}>
-          CAST
-        </NavLink>{' '}
-        <NavLink
-          to={{ pathname: `${url}/reviews`, state: { from: pastHistory } }}
-        >
-          REVIEWS
-        </NavLink>
-        <Switch>
-          <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
-          <Route path={`${path}/reviews`}>{movie && <Reviews />}</Route>
-        </Switch>
+        <h2 className={s.title}>MOVIE TITLE: {movie.title}</h2>
+        <div className={s.wrapper}>
+          <img
+            className={s.movieImage}
+            src={
+              movie.poster_path
+                ? `${IMG_URL}${movie.poster_path}`
+                : '../../images/fallback-photo.jpg'
+            }
+            alt={movie.title}
+          ></img>
+          <div className={s.overview}>
+            <p>{movie.overview}</p>
+            {movie.genres && (
+              <ul className={s.genres}>
+                {movie.genres.map(el => (
+                  <li key={el.name} className={s.genresItem}>
+                    {el.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div className={s.additional}>
+            <NavLink
+              to={{ pathname: `${url}/cast`, state: { from: pastHistory } }}
+              className={s.castBtn}
+              activeClassName={s.activeBtn}
+            >
+              CAST
+            </NavLink>
+            <NavLink
+              to={{ pathname: `${url}/reviews`, state: { from: pastHistory } }}
+              className={s.reviewsBtn}
+              activeClassName={s.activeBtn}
+            >
+              REVIEWS
+            </NavLink>
+            <Switch>
+              <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
+              <Route path={`${path}/reviews`}>{movie && <Reviews />}</Route>
+            </Switch>
+          </div>
+        </div>
       </div>
     );
   }
