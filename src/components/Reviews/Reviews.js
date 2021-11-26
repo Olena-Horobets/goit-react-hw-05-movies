@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchMovieReviews } from '../../services/serviceAPI';
-import { parseSlug } from '../../services/serviceSlugify';
+import { fetchMovieReviews } from 'services/serviceAPI';
+import { parseSlug } from 'services/serviceSlugify';
 
 function Reviews() {
   const { slug } = useParams();

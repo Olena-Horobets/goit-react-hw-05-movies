@@ -1,7 +1,8 @@
 import s from 'components/MovieCard/MovieCard.module.css';
-import fallbackPhoto from '../../images/fallbackPhoto.jpg';
+import fallbackPhoto from 'images/fallbackPhoto.jpg';
 
-import { IMG_URL } from '../../utils/constants';
+import { IMG_URL } from 'utils/constants';
+import PropTypes from 'prop-types';
 
 function MovieCard({ movie }) {
   return (
@@ -15,10 +16,18 @@ function MovieCard({ movie }) {
             ? `${IMG_URL}${movie.poster_path}`
             : `${fallbackPhoto}`
         }
-        alt={movie.title}
+        alt={movie.title || movie.name}
       ></img>
     </div>
   );
 }
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    title: PropTypes.string,
+    name: PropTypes.string,
+    poster_path: PropTypes.string,
+  }),
+};
 
 export { MovieCard };

@@ -1,15 +1,15 @@
 import s from './MovieDetailsPage.module.css';
-import fallbackPhoto from '../../images/fallbackPhoto.jpg';
+import fallbackPhoto from 'images/fallbackPhoto.jpg';
 
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { NavLink, useParams, useRouteMatch } from 'react-router-dom';
 import { Route, Switch, useLocation, useHistory } from 'react-router';
 
-import { fetchMovieById } from '../../services/serviceAPI';
-import { parseSlug } from '../../services/serviceSlugify';
+import { fetchMovieById } from 'services/serviceAPI';
+import { parseSlug } from 'services/serviceSlugify';
 
-import { IMG_URL } from '../../utils/constants';
-import { STATUS } from '../../utils/constants';
+import { IMG_URL } from 'utils/constants';
+import { STATUS } from 'utils/constants';
 import Loader from 'components/Loader';
 
 const Cast = lazy(() =>
@@ -35,6 +35,7 @@ function MovieDetailsPage() {
   const [movie, setMovie] = useState({});
 
   useEffect(() => {
+    setStatus(STATUS.PENDING);
     fetchMovieById({ movieId })
       .then(data => setMovie(data), setStatus(STATUS.RESOLVED))
       .catch(err => setStatus(STATUS.REJECTED));
@@ -45,7 +46,7 @@ function MovieDetailsPage() {
   };
 
   const getGradient = data => {
-    return `#ff4c29 0deg ${data * 36}deg, #ffffff77 ${data * 36}deg 0deg`;
+    return `#ff4c29 0deg ${data * 36}deg, #ffffff77 ${data * 36}deg 360deg`;
   };
 
   if (status === STATUS.RESOLVED) {
@@ -121,6 +122,7 @@ function MovieDetailsPage() {
             >
               REVIEWS
             </NavLink>
+
             <div className={s.infoWrapper}>
               <Suspense fallback={Loader}>
                 <Switch>
@@ -134,11 +136,17 @@ function MovieDetailsPage() {
       </div>
     );
   }
+
   if (status === STATUS.IDLE) {
     return <p>enter something</p>;
   }
+
   if (status === STATUS.REJECTED) {
     return <div className="errorImage"></div>;
+  }
+
+  if (status === STATUS.PENDING) {
+    return <Loader></Loader>;
   }
 }
 

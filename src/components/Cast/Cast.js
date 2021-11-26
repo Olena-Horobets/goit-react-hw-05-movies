@@ -3,8 +3,8 @@ import s from './Cast.module.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { fetchMovieCast } from '../../services/serviceAPI';
-import { parseSlug } from '../../services/serviceSlugify';
+import { fetchMovieCast } from 'services/serviceAPI';
+import { parseSlug } from 'services/serviceSlugify';
 
 function Cast() {
   const { slug } = useParams();

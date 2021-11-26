@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 
-import { fetchMovieByQuery } from '../../services/serviceAPI';
-import { getSlug } from '../../services/serviceSlugify';
+import { fetchMovieByQuery } from 'services/serviceAPI';
+import { getSlug } from 'services/serviceSlugify';
 
-import { MovieCard } from '../../components/MovieCard/MovieCard';
+import { MovieCard } from 'components/MovieCard/MovieCard';
 
 function MoviesPage() {
   const location = useLocation();
