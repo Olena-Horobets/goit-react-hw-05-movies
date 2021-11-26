@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Cast/Cast.module.css"],"names":[],"mappings":"AAAA,uCACE,kBACF","file":"cast-page.54cc2db1.chunk.css","sourcesContent":[".castItem:not(:last-child) {\n  margin-bottom: 10px;\n}\n"]}
