@@ -57,7 +57,7 @@ function MovieDetailsPage() {
           </button>
         )}
 
-        <h2 className={s.title}>{movie.title}</h2>
+        <h2 className="title">{movie.title}</h2>
         <div className={s.wrapper}>
           <img
             className={s.movieImage}
@@ -81,7 +81,7 @@ function MovieDetailsPage() {
               </ul>
             )}
 
-            {movie.vote_average && (
+            {movie.vote_average > 0 && (
               <>
                 <h3>Movie rating:</h3>
                 <div

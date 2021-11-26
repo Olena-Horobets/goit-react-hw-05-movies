@@ -10,10 +10,11 @@
 }
 
 .title {
+  display: inline-block;
   color: var(--transparent-white);
+  font-size: 40px;
   font-weight: 500;
-  font-size: 36px;
-  justify-self: center;
+  margin-bottom: 40px;
 }
 
 /* gallery styles */

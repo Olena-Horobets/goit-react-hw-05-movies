@@ -4,14 +4,6 @@
   padding: 40px;
 }
 
-.title {
-  display: inline-block;
-  color: var(--transparent-white);
-  font-size: 40px;
-  font-weight: 500;
-  margin-bottom: 40px;
-}
-
 .btn {
   display: inline-block;
   color: var(--transparent-white);
