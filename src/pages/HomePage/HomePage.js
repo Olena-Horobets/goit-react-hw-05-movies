@@ -20,13 +20,13 @@ function HomePage() {
   const history = useHistory();
   const location = useLocation();
 
-  const [movies, setMovies] = useState([]);
   const [searchPeriod, setSearchPeriod] = useState(
     () => new URLSearchParams(location?.search)?.get('trending') || 'day',
   );
   const [page, setPage] = useState(
     () => Number(new URLSearchParams(location?.search)?.get('page')) || 1,
   );
+  const [movies, setMovies] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {

@@ -11,6 +11,7 @@ import { parseSlug } from 'services/serviceSlugify';
 import { IMG_URL } from 'utils/constants';
 import { STATUS } from 'utils/constants';
 import Loader from 'components/Loader';
+import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 
 const Cast = lazy(() =>
   import('components/Cast/Cast.js' /* webpackChunkName: "cast-page" */),
@@ -142,11 +143,11 @@ function MovieDetailsPage() {
   }
 
   if (status === STATUS.REJECTED) {
-    return <div className="errorImage"></div>;
+    return <ErrorMessage />;
   }
 
   if (status === STATUS.PENDING) {
-    return <Loader></Loader>;
+    return <Loader />;
   }
 }
 
