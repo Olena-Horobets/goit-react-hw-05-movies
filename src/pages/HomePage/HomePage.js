@@ -1,20 +1,23 @@
 import s from './HomePage.module.css';
 
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useHistory } from 'react-router';
 
-import * as fetchMoviesAPI from 'services/serviceAPI';
+import { fetchTrending } from 'services/serviceAPI';
 import { Gallery } from 'components/Gallery/Gallery';
 
 function HomePage() {
+  const history = useHistory();
   const location = useLocation();
+
   const [movies, setMovies] = useState([]);
-  const [searchPeriod, setSearchPeriod] = useState('day');
+  const [searchPeriod, setSearchPeriod] = useState(() =>
+    new URLSearchParams(location.search).get('trending'),
+  );
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetchMoviesAPI
-      .fetchPopular({ period: searchPeriod, page })
+    fetchTrending({ period: searchPeriod, page })
       .then(data => {
         page === 1
           ? setMovies(data.results)
@@ -23,9 +26,17 @@ function HomePage() {
       .catch(err => console.log(err));
   }, [page, searchPeriod]);
 
+  const handleParamsChange = e => {
+    history.push({
+      ...location,
+      search: `trending=${e.target.value}`,
+    });
+    setSearchPeriod(e.target.value);
+  };
+
   return (
     <>
-      <h2 className="title">Popular movies</h2>
+      <h2 className="title">Trending movies</h2>
       <div className={s.homeControls}>
         <label
           htmlFor="day"
@@ -39,9 +50,7 @@ function HomePage() {
           type="radio"
           value="day"
           checked={searchPeriod === 'day'}
-          onChange={e => {
-            setSearchPeriod(e.target.value);
-          }}
+          onChange={handleParamsChange}
         ></input>
         <label
           htmlFor="week"
@@ -55,9 +64,7 @@ function HomePage() {
           type="radio"
           value="week"
           checked={searchPeriod === 'week'}
-          onChange={e => {
-            setSearchPeriod(e.target.value);
-          }}
+          onChange={handleParamsChange}
         ></input>
       </div>
 
@@ -66,7 +73,7 @@ function HomePage() {
           <Gallery
             movies={movies}
             location={location}
-            keyWord={'home'}
+            keyWord={'trending'}
           ></Gallery>
           <button></button>
         </>

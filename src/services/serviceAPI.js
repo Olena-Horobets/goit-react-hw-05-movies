@@ -8,7 +8,7 @@ async function fetchWithErrorHandling(url = '', config = {}) {
     : Promise.reject(new Error('Not found'));
 }
 
-export function fetchPopular({ period, page }) {
+export function fetchTrending({ period, page }) {
   return fetchWithErrorHandling(
     `${BASE_URL}trending/all/${period}?api_key=${KEY}&page=${page}`,
   );
