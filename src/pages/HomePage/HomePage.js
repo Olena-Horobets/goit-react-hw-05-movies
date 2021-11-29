@@ -5,23 +5,42 @@ import { useLocation, useHistory } from 'react-router';
 
 import { fetchTrending } from 'services/serviceAPI';
 import { Gallery } from 'components/Gallery/Gallery';
+import { Pagination } from 'components/Pagination/Pagination';
+
+function smoothScrollingTo(id) {
+  const element = document.getElementById(id);
+  element.scrollIntoView({
+    alignToTop: true,
+    behavior: 'smooth',
+    block: 'end',
+  });
+}
 
 function HomePage() {
   const history = useHistory();
   const location = useLocation();
 
   const [movies, setMovies] = useState([]);
-  const [searchPeriod, setSearchPeriod] = useState(() =>
-    new URLSearchParams(location.search).get('trending'),
+  const [searchPeriod, setSearchPeriod] = useState(
+    () => new URLSearchParams(location?.search)?.get('trending') || 'day',
   );
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(
+    () => Number(new URLSearchParams(location?.search)?.get('page')) || 1,
+  );
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    if (!location.search) return;
+    setSearchPeriod(new URLSearchParams(location.search).get('trending'));
+    setPage(Number(new URLSearchParams(location.search).get('page')));
+  }, [location]);
 
   useEffect(() => {
     fetchTrending({ period: searchPeriod, page })
       .then(data => {
-        page === 1
-          ? setMovies(data.results)
-          : setMovies(prev => [...prev, ...data.results]);
+        setMovies(data.results);
+        smoothScrollingTo(data.results[0].id);
+        setTotalPages(data.total_pages);
       })
       .catch(err => console.log(err));
   }, [page, searchPeriod]);
@@ -29,9 +48,24 @@ function HomePage() {
   const handleParamsChange = e => {
     history.push({
       ...location,
-      search: `trending=${e.target.value}`,
+      search: `trending=${e.target.value}&page=1`,
     });
     setSearchPeriod(e.target.value);
+    setPage(1);
+  };
+
+  const handlePageChange = e => {
+    const action = e.target.dataset.action;
+    let newPage;
+    action === 'decrement'
+      ? (newPage = Number(page) - 1)
+      : (newPage = Number(page) + 1);
+
+    setPage(newPage);
+    history.push({
+      ...location,
+      search: `trending=${searchPeriod}&page=${newPage}`,
+    });
   };
 
   return (
@@ -75,7 +109,12 @@ function HomePage() {
             location={location}
             keyWord={'trending'}
           ></Gallery>
-          <button></button>
+          <Pagination
+            page={page}
+            totalPages={totalPages}
+            onClick={handlePageChange}
+            movies={movies}
+          />
         </>
       )}
     </>

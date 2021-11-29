@@ -5,7 +5,7 @@ const Navigation = () => {
   return (
     <nav className={s.nav}>
       <NavLink
-        to={{ pathname: '/', search: 'trending=day' }}
+        to={{ pathname: '/', search: 'trending=day&page=1' }}
         exact
         className={s.link}
         activeClassName={s.activeLink}

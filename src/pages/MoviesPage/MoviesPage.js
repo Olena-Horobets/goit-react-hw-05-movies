@@ -22,7 +22,10 @@ function MoviesPage() {
     }
 
     fetchMovieByQuery({ query })
-      .then(data => setMovies(data.results))
+      .then(data => {
+        setMovies(data.results);
+        console.log(data.total_pages);
+      })
       .catch(err => console.log(err));
   }, [query]);
 
@@ -51,7 +54,6 @@ function MoviesPage() {
             location={location}
             keyWord={'search'}
           ></Gallery>
-          <button></button>
         </>
       ) : (
         <p className={s.searchRequest}>...enter your query</p>

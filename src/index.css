@@ -11,12 +11,17 @@
   --shadow-reversed: -6px 6px 8px var(--dark-color);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Kanit', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--main-bgr-color);
+  cursor: default;
 }
 
 h1,
