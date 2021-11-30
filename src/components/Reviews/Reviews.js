@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 
 import { fetchMovieReviews } from 'services/serviceAPI';
 import { parseSlug } from 'services/serviceSlugify';
+import { getDateString } from 'services/serviceDateHandler';
 import { Button } from 'components/Button/Button';
 
 function Reviews() {
@@ -54,15 +55,6 @@ function Reviews() {
         return prev < reviews.length - 1 ? prev + 1 : 0;
       });
     }
-  };
-
-  const getDateString = data => {
-    const string = new Date(data);
-    const date = string.getDate();
-    const month = string.getMonth();
-    const year = string.getFullYear();
-
-    return `${date} / ${month + 1} / ${year}`;
   };
 
   return visibleReview ? (

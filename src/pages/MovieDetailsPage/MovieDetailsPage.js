@@ -155,13 +155,7 @@ function MovieDetailsPage() {
             <div className={s.infoWrapper}>
               <Suspense fallback={Loader}>
                 <Switch>
-                  <Route
-                    path={`${path}/cast`}
-                    keyWord={keyWord}
-                    pastHistory={pastHistory}
-                  >
-                    {movie && <Cast />}
-                  </Route>
+                  <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
                   <Route path={`${path}/reviews`}>{movie && <Reviews />}</Route>
                 </Switch>
               </Suspense>

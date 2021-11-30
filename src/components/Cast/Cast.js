@@ -1,7 +1,7 @@
 import s from './Cast.module.css';
 
 import { useState, useEffect } from 'react';
-// import { useLocation } from 'react-dom';
+import { useLocation } from 'react-router';
 import { Link, useParams } from 'react-router-dom';
 
 import { fetchMovieCast } from 'services/serviceAPI';
@@ -9,6 +9,8 @@ import { getSlug, parseSlug } from 'services/serviceSlugify';
 import { Button } from 'components/Button/Button';
 
 function Cast() {
+  const location = useLocation();
+
   const { slug } = useParams();
   const movieId = parseSlug(slug);
 
@@ -40,6 +42,7 @@ function Cast() {
                   className={s.castLink}
                   to={{
                     pathname: `/actors/${getSlug(el)}`,
+                    state: { from: location, keyWord: 'movie' },
                   }}
                 >
                   {el.name}

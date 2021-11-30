@@ -1,6 +1,7 @@
 import s from './Pagination.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
+import PropTypes from 'prop-types';
 import Loader from 'react-loader-spinner';
 import { Button } from 'components/Button/Button';
 
@@ -32,5 +33,11 @@ function Pagination({ page, totalPages, onClick }) {
     </div>
   );
 }
+
+Pagination.propTypes = {
+  page: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
 export { Pagination };

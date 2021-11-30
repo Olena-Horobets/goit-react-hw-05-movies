@@ -1,6 +1,7 @@
 import s from './Gallery.module.css';
 
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getSlug } from 'services/serviceSlugify';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 
@@ -25,5 +26,11 @@ function Gallery({ movies, location, keyWord }) {
     </>
   );
 }
+
+Gallery.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.number })),
+  location: PropTypes.shape({}),
+  keyWord: PropTypes.string,
+};
 
 export { Gallery };
