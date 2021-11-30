@@ -1,23 +1,73 @@
-.input {
+.form {
+  position: relative;
   width: 600px;
   height: 40px;
-  margin-top: 30px;
-  margin-bottom: 60px;
+  margin: 30px auto 60px;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
   font-size: 18px;
   border: none;
   padding: 4px 12px;
   color: var(--dark-color);
   background-color: var(--transparent-white);
   box-shadow: none;
+  transform: scale(1);
 
-  transform: scale(0.98);
-  transition: transform 130ms ease-in, box-shadow 120ms ease-in;
+  transition: transform 130ms ease-out, box-shadow 130ms ease-out;
 }
 
 .input:focus {
   outline: none;
-  transform: scaleX(1);
+  transform: scale(1.02);
   box-shadow: var(--item-shadow);
+}
+
+.wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  overflow: hidden;
+  transform: translateX(0%);
+  width: 90px;
+  height: 100%;
+  transition: transform 130ms ease-out;
+}
+
+.input:focus ~ .wrapper {
+  transform: translateX(6%);
+}
+
+.clearBtn {
+  display: inline-block;
+  color: var(--white-color);
+  border: none;
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background-color: var(--dark-color);
+  opacity: 0.7;
+  transform: translateX(100%);
+
+  transition: background-color 130ms ease-out, transform 130ms ease-out 150ms,
+    opacity 130ms ease-out;
+}
+
+.activeClearBtn {
+  composes: clearBtn;
+  transform: translateX(0%);
+}
+
+.activeClearBtn:hover {
+  background-color: var(--accent-color);
+}
+
+.activeClearBtn:active {
+  opacity: 1;
 }
 
 .searchRequest {

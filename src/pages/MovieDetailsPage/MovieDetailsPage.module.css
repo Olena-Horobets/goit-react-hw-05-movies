@@ -8,7 +8,6 @@
   display: inline-block;
   color: var(--transparent-white);
   border: 3px solid;
-  cursor: pointer;
   padding: 8px 16px;
   font-size: 18px;
   font-weight: 500;
@@ -106,12 +105,13 @@
 
 .castBtn {
   composes: btn;
-
+  cursor: pointer;
   margin-right: 20px;
 }
 
 .reviewsBtn {
   composes: btn;
+  cursor: pointer;
 }
 
 .activeBtn {

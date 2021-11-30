@@ -47,6 +47,10 @@ ul {
   padding: 0;
 }
 
+button {
+  cursor: pointer;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }

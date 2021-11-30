@@ -54,6 +54,7 @@ function MoviesPage() {
     setQuery(e.target.value);
     setPage(1);
     const query = e.target.value.trim().toLowerCase();
+
     history.push({
       ...location,
       search: `query=${query}&page=1`,
@@ -74,15 +75,34 @@ function MoviesPage() {
     });
   };
 
+  const onClearBtnClick = () => {
+    setQuery('');
+    history.push({
+      ...location,
+      search: `query=&page=1`,
+    });
+  };
+
   return (
     <>
-      <input
-        className={s.input}
-        value={query}
-        onChange={onInputChange}
-        autoComplete="off"
-        autoFocus
-      ></input>
+      <form className={s.form}>
+        <input
+          className={s.input}
+          value={query}
+          onChange={onInputChange}
+          autoComplete="off"
+          autoFocus
+        ></input>
+        <div className={s.wrapper}>
+          <button
+            type="button"
+            className={!query.length ? s.clearBtn : s.activeClearBtn}
+            onClick={onClearBtnClick}
+          >
+            clear
+          </button>
+        </div>
+      </form>
       {movies.length ? (
         <>
           <Gallery

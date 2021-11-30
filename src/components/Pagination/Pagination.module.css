@@ -6,7 +6,6 @@
   display: inline-block;
   color: var(--transparent-white);
   border: 3px solid;
-  cursor: pointer;
   padding: 8px 16px;
   font-size: 18px;
   font-weight: 500;
