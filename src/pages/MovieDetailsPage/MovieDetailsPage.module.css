@@ -7,8 +7,7 @@
 .titleDate {
   font-weight: 300;
   font-style: italic;
-  color: var(--white-color);
-  margin-left: 16px;
+  margin-left: 20px;
 }
 
 .title {
@@ -17,6 +16,10 @@
   font-size: 40px;
   font-weight: 500;
   margin: 0;
+}
+
+.subtitle {
+  color: var(--white-color);
 }
 
 .tagline {
@@ -37,7 +40,7 @@
   text-align: left;
   line-height: 1.4;
   font-size: 20px;
-  color: var(--white-color);
+  color: var(--transparent-white);
 }
 
 .movieImage {
@@ -98,6 +101,7 @@
   margin-bottom: 0;
   line-height: 1;
   font-size: 32px;
+  color: var(--white-color);
   transform: translate(-50%, -50%) scaleX(-1);
 }
 

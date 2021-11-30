@@ -1,4 +1,5 @@
 import s from './Reviews.module.css';
+import { ReactComponent as ReactSprite } from '../../images/sprite.svg';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -6,17 +7,16 @@ import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'services/serviceAPI';
 import { parseSlug } from 'services/serviceSlugify';
 import { Button } from 'components/Button/Button';
-import { ReactComponent as ReactSprite } from '../../images/sprite.svg';
 
 function Reviews() {
   const { slug } = useParams();
   const movieId = parseSlug(slug);
 
   const [reviews, setReviews] = useState([]);
+  const [reviewId, setReviewId] = useState(0);
+  const [review, setReview] = useState(null);
   const [visibleReview, setVisibleReview] = useState(null);
   const [showAll, setShowAll] = useState(true);
-  const [review, setReview] = useState(null);
-  const [reviewId, setReviewId] = useState(0);
 
   useEffect(() => {
     fetchMovieReviews({ movieId })
@@ -32,7 +32,6 @@ function Reviews() {
 
   useEffect(() => {
     if (!review) return;
-
     review.content.length > 600 ? setShowAll(false) : setShowAll(true);
   }, [review]);
 
@@ -69,16 +68,6 @@ function Reviews() {
   return visibleReview ? (
     <div className={s.wrapper}>
       <ReactSprite />
-      <button
-        className={s.leftSwipeBtn}
-        type="button"
-        onClick={onChangeReview}
-        data-action="previous"
-      >
-        <svg width="30" height="30">
-          <use href="#icon-arrow-left"></use>
-        </svg>
-      </button>
       <div>
         <h4 className={s.title}>
           <a
@@ -93,16 +82,34 @@ function Reviews() {
         </h4>
         <p className={s.text}>{visibleReview.content}</p>
       </div>
-      <button
-        className={s.rightSwipeBtn}
-        type="button"
-        onClick={onChangeReview}
-        data-action="next"
-      >
-        <svg width="30" height="30">
-          <use href="#icon-arrow-right"></use>
-        </svg>
-      </button>
+
+      {/* slider for more than one review */}
+      {reviews.length > 1 && (
+        <>
+          <button
+            className={s.leftSwipeBtn}
+            type="button"
+            onClick={onChangeReview}
+            data-action="previous"
+          >
+            <svg width="30" height="30">
+              <use href="#icon-arrow-left"></use>
+            </svg>
+          </button>
+          <button
+            className={s.rightSwipeBtn}
+            type="button"
+            onClick={onChangeReview}
+            data-action="next"
+          >
+            <svg width="30" height="30">
+              <use href="#icon-arrow-right"></use>
+            </svg>
+          </button>
+        </>
+      )}
+
+      {/* button show more/hide */}
       {review.content.length >= 600 && (
         <Button
           type="button"

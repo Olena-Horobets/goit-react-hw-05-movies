@@ -7,8 +7,8 @@ import { Route, Switch, useLocation, useHistory } from 'react-router';
 
 import { fetchMovieById } from 'services/serviceAPI';
 import { parseSlug } from 'services/serviceSlugify';
-
 import { IMG_URL, LOGO_URL, STATUS } from 'utils/constants';
+
 import Loader from 'components/Loader';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import { Button } from 'components/Button/Button';
@@ -92,7 +92,7 @@ function MovieDetailsPage() {
             )}
             {movie.vote_average > 0 && (
               <>
-                <h3>Movie rating:</h3>
+                <h3 className={s.subtitle}>Movie rating:</h3>
                 <div
                   className={s.rating}
                   style={{
@@ -110,7 +110,7 @@ function MovieDetailsPage() {
 
             {movie.production_companies?.length ? (
               <>
-                <h3>Production by:</h3>
+                <h3 className={s.subtitle}>Production by:</h3>
                 <ul className={s.logoList}>
                   {movie.production_companies.map(el => (
                     <li key={el.id} className={s.logoItem}>
@@ -155,7 +155,13 @@ function MovieDetailsPage() {
             <div className={s.infoWrapper}>
               <Suspense fallback={Loader}>
                 <Switch>
-                  <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
+                  <Route
+                    path={`${path}/cast`}
+                    keyWord={keyWord}
+                    pastHistory={pastHistory}
+                  >
+                    {movie && <Cast />}
+                  </Route>
                   <Route path={`${path}/reviews`}>{movie && <Reviews />}</Route>
                 </Switch>
               </Suspense>

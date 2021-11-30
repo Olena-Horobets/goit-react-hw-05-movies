@@ -18,6 +18,9 @@ const MovieDetailsPage = lazy(() =>
     './pages/MovieDetailsPage/MovieDetailsPage.js' /* webpackChunkName: "movie-details-page" */
   ),
 );
+const ActorPage = lazy(() =>
+  import('./pages/ActorPage/ActorPage.js' /* webpackChunkName: "actor-page" */),
+);
 
 function App() {
   return (
@@ -35,6 +38,9 @@ function App() {
             </Route>
             <Route path="/movies/:slug">
               <MovieDetailsPage />
+            </Route>
+            <Route path="/actors/:slug">
+              <ActorPage />
             </Route>
             <Route path="*">
               <Redirect to="/" />

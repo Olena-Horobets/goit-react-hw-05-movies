@@ -1,10 +1,11 @@
 import s from './Cast.module.css';
 
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useLocation } from 'react-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { fetchMovieCast } from 'services/serviceAPI';
-import { parseSlug } from 'services/serviceSlugify';
+import { getSlug, parseSlug } from 'services/serviceSlugify';
 import { Button } from 'components/Button/Button';
 
 function Cast() {
@@ -35,7 +36,14 @@ function Cast() {
           <ul>
             {visibleCast.map(el => (
               <li key={el.id} className={s.castItem}>
-                {el.name}
+                <Link
+                  className={s.castLink}
+                  to={{
+                    pathname: `/actors/${getSlug(el)}`,
+                  }}
+                >
+                  {el.name}
+                </Link>
               </li>
             ))}
           </ul>

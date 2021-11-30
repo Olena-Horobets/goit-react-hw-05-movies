@@ -1,7 +1,7 @@
 import slugify from 'slugify';
 
-export const getSlug = movie => {
-  return slugify(`${movie.title || movie.name} ${movie.id}`, {
+export const getSlug = obj => {
+  return slugify(`${obj.title || obj.name} ${obj.id}`, {
     lower: true,
     strict: true,
   });

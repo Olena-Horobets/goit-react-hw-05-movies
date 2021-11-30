@@ -1,3 +1,31 @@
 .castItem:not(:last-child) {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.castLink {
+  color: var(--white-color);
+  transition: color 130ms ease-out;
+  position: relative;
+}
+
+.castLink::after {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+
+  transform: scaleX(0);
+  transition: transform 130ms ease-in;
+}
+
+.castLink:hover {
+  color: var(--accent-color);
+}
+
+.castLink:hover.castLink::after {
+  transform: scaleX(1);
 }

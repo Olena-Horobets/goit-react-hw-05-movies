@@ -37,3 +37,9 @@ export function fetchMovieReviews({ movieId }) {
     `${BASE_URL}movie/${movieId}/reviews?api_key=${KEY}&language=en-US&page=1`,
   );
 }
+
+export function fetchCastById({ castId }) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}person/${castId}?api_key=${KEY}&language=en-US`,
+  );
+}
