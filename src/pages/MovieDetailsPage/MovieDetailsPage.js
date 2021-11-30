@@ -62,12 +62,13 @@ function MovieDetailsPage() {
           />
         )}
 
-        <h2 className="title">
+        <h2 className={s.title}>
           {movie.title}
           <span className={s.titleDate}>
             {movie.release_date && String(movie.release_date).slice(0, 4)}
           </span>
         </h2>
+        {movie.tagline && <p className={s.tagline}>{movie.tagline}</p>}
         <div className={s.wrapper}>
           <img
             className={s.movieImage}
@@ -89,7 +90,6 @@ function MovieDetailsPage() {
                 ))}
               </ul>
             )}
-
             {movie.vote_average > 0 && (
               <>
                 <h3>Movie rating:</h3>
@@ -108,7 +108,7 @@ function MovieDetailsPage() {
               </>
             )}
 
-            {movie.production_companies && (
+            {movie.production_companies?.length ? (
               <>
                 <h3>Production by:</h3>
                 <ul className={s.logoList}>
@@ -127,7 +127,7 @@ function MovieDetailsPage() {
                   ))}
                 </ul>
               </>
-            )}
+            ) : null}
           </div>
 
           <div className={s.additional}>

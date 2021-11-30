@@ -1,0 +1,59 @@
+.wrapper {
+  position: relative;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 100;
+}
+
+.subtitle {
+  color: var(--white-color);
+  font-size: 24px;
+  font-weight: 100;
+  text-decoration: underline var(--dark-color);
+  transition: color 130ms ease-out;
+}
+
+.subtitle:hover {
+  color: var(--dark-color);
+}
+
+.text {
+  color: var(--transparent-white);
+  font-size: 20px;
+  font-weight: 100;
+  letter-spacing: 0.3px;
+}
+
+.swipeBtn {
+  position: absolute;
+  top: 250px;
+  display: inline-flex;
+  margin: 0;
+  padding: 10;
+  border: none;
+  background-color: transparent;
+  color: var(--extra-tr-white);
+
+  transition: color 130ms ease-out;
+}
+
+.swipeBtn:hover {
+  color: var(--accent-color);
+}
+
+.swipeBtn:active {
+  color: var(--dark-color);
+}
+
+.leftSwipeBtn {
+  composes: swipeBtn;
+  left: -50px;
+}
+
+.rightSwipeBtn {
+  composes: swipeBtn;
+  right: -50px;
+}

@@ -102,7 +102,7 @@ function HomePage() {
         ></input>
       </div>
 
-      {movies && (
+      {movies && movies.length && (
         <>
           <Gallery
             movies={movies}

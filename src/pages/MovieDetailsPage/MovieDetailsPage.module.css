@@ -11,9 +11,26 @@
   margin-left: 16px;
 }
 
+.title {
+  display: inline-block;
+  color: var(--transparent-white);
+  font-size: 40px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.tagline {
+  color: var(--extra-tr-white);
+  font-size: 22px;
+  font-weight: 100;
+  font-style: italic;
+  margin: 10px 0 0;
+}
+
 .wrapper {
   display: flex;
   width: 100%;
+  margin-top: 50px;
   justify-content: space-between;
   align-items: flex-start;
 
@@ -53,7 +70,7 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-color: #ffffff77;
+  background-color: var(--extra-tr-white);
   box-shadow: var(--shadow-reversed);
   transform: scaleX(-1);
   margin-bottom: 50px;
@@ -84,10 +101,11 @@
   transform: translate(-50%, -50%) scaleX(-1);
 }
 
+/* companies */
 .logoList {
   display: flex;
   flex-wrap: wrap;
-  padding: -10px;
+  margin: -10px;
 }
 
 .logoItem {
