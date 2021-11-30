@@ -8,8 +8,7 @@ import { Route, Switch, useLocation, useHistory } from 'react-router';
 import { fetchMovieById } from 'services/serviceAPI';
 import { parseSlug } from 'services/serviceSlugify';
 
-import { IMG_URL } from 'utils/constants';
-import { STATUS } from 'utils/constants';
+import { IMG_URL, LOGO_URL, STATUS } from 'utils/constants';
 import Loader from 'components/Loader';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import { Button } from 'components/Button/Button';
@@ -63,7 +62,12 @@ function MovieDetailsPage() {
           />
         )}
 
-        <h2 className="title">{movie.title}</h2>
+        <h2 className="title">
+          {movie.title}
+          <span className={s.titleDate}>
+            {movie.release_date && String(movie.release_date).slice(0, 4)}
+          </span>
+        </h2>
         <div className={s.wrapper}>
           <img
             className={s.movieImage}
@@ -74,7 +78,6 @@ function MovieDetailsPage() {
             }
             alt={movie.title}
           ></img>
-
           <div className={s.overview}>
             <p>{movie.overview}</p>
             {movie.genres && (
@@ -102,6 +105,27 @@ function MovieDetailsPage() {
                     movie.vote_average * 10
                   } %`}</p>
                 </div>
+              </>
+            )}
+
+            {movie.production_companies && (
+              <>
+                <h3>Production by:</h3>
+                <ul className={s.logoList}>
+                  {movie.production_companies.map(el => (
+                    <li key={el.id} className={s.logoItem}>
+                      {el.logo_path ? (
+                        <img
+                          className={s.logo}
+                          src={`${LOGO_URL}${el.logo_path}`}
+                          alt={el.name}
+                        />
+                      ) : (
+                        <span className={s.logoText}>{el.name}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </>
             )}
           </div>

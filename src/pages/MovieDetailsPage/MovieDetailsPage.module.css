@@ -4,6 +4,13 @@
   padding: 40px;
 }
 
+.titleDate {
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white-color);
+  margin-left: 16px;
+}
+
 .wrapper {
   display: flex;
   width: 100%;
@@ -27,7 +34,7 @@
 
 .genres {
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
 .genresItem {
@@ -49,6 +56,7 @@
   background-color: #ffffff77;
   box-shadow: var(--shadow-reversed);
   transform: scaleX(-1);
+  margin-bottom: 50px;
 }
 
 .rating::after {
@@ -74,6 +82,30 @@
   line-height: 1;
   font-size: 32px;
   transform: translate(-50%, -50%) scaleX(-1);
+}
+
+.logoList {
+  display: flex;
+  flex-wrap: wrap;
+  padding: -10px;
+}
+
+.logoItem {
+  background-color: var(--transparent-white);
+  padding: 4px;
+  box-shadow: var(--item-shadow);
+  margin: 10px;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.logoText {
+  font-weight: 500;
+  color: var(--main-bgr-color);
 }
 
 /* cast and review section */
