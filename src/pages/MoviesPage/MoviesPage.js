@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, useHistory } from 'react-router';
 
 import { fetchMovieByQuery } from 'services/serviceAPI';
+import { Button } from 'components/Button/Button';
 import { Gallery } from 'components/Gallery/Gallery';
 import { Pagination } from 'components/Pagination/Pagination';
 
@@ -94,13 +95,12 @@ function MoviesPage() {
           autoFocus
         ></input>
         <div className={s.wrapper}>
-          <button
+          <Button
             type="button"
-            className={!query.length ? s.clearBtn : s.activeClearBtn}
+            styledClass={!query.length ? 'clearBtn' : 'activeClearBtn'}
             onClick={onClearBtnClick}
-          >
-            clear
-          </button>
+            text="clear"
+          />
         </div>
       </form>
       {movies.length ? (

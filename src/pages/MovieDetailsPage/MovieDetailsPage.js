@@ -12,6 +12,7 @@ import { IMG_URL } from 'utils/constants';
 import { STATUS } from 'utils/constants';
 import Loader from 'components/Loader';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
+import { Button } from 'components/Button/Button';
 
 const Cast = lazy(() =>
   import('components/Cast/Cast.js' /* webpackChunkName: "cast-page" */),
@@ -54,9 +55,12 @@ function MovieDetailsPage() {
     return (
       <div className={s.movieCard}>
         {pastHistory && (
-          <button className={s.backBtn} type="button" onClick={onGoBackClick}>
-            {`back to ${keyWord}`}
-          </button>
+          <Button
+            styledClass="backBtn"
+            type="button"
+            onClick={onGoBackClick}
+            text={`back to ${keyWord}`}
+          />
         )}
 
         <h2 className="title">{movie.title}</h2>

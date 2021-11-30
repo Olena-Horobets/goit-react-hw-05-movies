@@ -4,6 +4,7 @@
 
 .label {
   color: var(--transparent-white);
+  cursor: pointer;
   margin-left: 14px;
   font-size: 36px;
   font-weight: 500;
