@@ -113,7 +113,7 @@
 }
 
 .logoItem {
-  background-color: var(--transparent-white);
+  background-color: var(--white-color);
   padding: 4px;
   box-shadow: var(--item-shadow);
   margin: 10px;

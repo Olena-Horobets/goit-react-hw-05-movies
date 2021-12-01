@@ -50,7 +50,7 @@ function Cast() {
               </li>
             ))}
           </ul>
-          {cast.length !== 10 && (
+          {cast.length > 10 && (
             <Button
               type="button"
               styledClass="showAll"
