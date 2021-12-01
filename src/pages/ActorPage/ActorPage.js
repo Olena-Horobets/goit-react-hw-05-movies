@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router';
 import { useParams } from 'react-router-dom';
 
+import { ShortenTextHook } from 'hooks/shortenTextHook';
 import { fetchCastById } from '../../services/serviceAPI';
 import { parseSlug } from 'services/serviceSlugify';
 import { getDateString } from 'services/serviceDateHandler';
@@ -73,7 +74,12 @@ function ActorPage() {
               )}
             </p>
             <p>{actor.place_of_birth}</p>
-            <p className={s.biography}>{actor.biography}</p>
+            <ShortenTextHook
+              string={actor.biography}
+              length={700}
+              styledClass={s.biography}
+              backup={`sorry, we didn't find anything about ${actor.name}`}
+            />
             {actor.homepage && (
               <a
                 href={actor.homepage}

@@ -167,7 +167,7 @@ function MovieDetailsPage() {
   }
 
   if (status === STATUS.IDLE) {
-    return <p>enter something</p>;
+    return <div className={s.movieCard}></div>;
   }
 
   if (status === STATUS.REJECTED) {

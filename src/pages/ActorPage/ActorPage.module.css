@@ -28,6 +28,8 @@
 }
 
 .homepage {
+  display: block;
+  margin-top: 40px;
   text-decoration: underline;
   color: var(--accent-color);
   transition: color 130ms ease-out;
