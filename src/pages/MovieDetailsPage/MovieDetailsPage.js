@@ -12,6 +12,7 @@ import { IMG_URL, LOGO_URL, STATUS } from 'utils/constants';
 import Loader from 'components/Loader';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import { Button } from 'components/Button/Button';
+import { RateMovieHook } from 'services/serviceSessionId';
 
 const Cast = lazy(() =>
   import('components/Cast/Cast.js' /* webpackChunkName: "cast-page" */),
@@ -90,24 +91,31 @@ function MovieDetailsPage() {
                 ))}
               </ul>
             )}
-            {movie.vote_average > 0 && (
-              <>
-                <h3 className={s.subtitle}>Movie rating:</h3>
-                <div
-                  className={s.rating}
-                  style={{
-                    background: `conic-gradient(${getGradient(
-                      movie.vote_average,
-                    )})`,
-                  }}
-                >
-                  <p className={s.ratingNumber}>{`${
-                    movie.vote_average * 10
-                  } %`}</p>
-                </div>
-              </>
-            )}
 
+            <div className={s.ratingWrapper}>
+              {movie.vote_average > 0 && (
+                <div className={s.contentInlineBlock}>
+                  <h3 className={s.subtitle}>Movie rating:</h3>
+                  <div
+                    className={s.rating}
+                    style={{
+                      background: `conic-gradient(${getGradient(
+                        movie.vote_average,
+                      )})`,
+                    }}
+                  >
+                    <p className={s.ratingNumber}>{`${
+                      movie.vote_average * 10
+                    } %`}</p>
+                  </div>
+                </div>
+              )}
+
+              <div className={s.contentInlineBlock}>
+                <h3 className={s.subtitle}>Leave your vote:</h3>
+                <RateMovieHook movieId={movieId} />
+              </div>
+            </div>
             {movie.production_companies?.length ? (
               <>
                 <h3 className={s.subtitle}>Production by:</h3>

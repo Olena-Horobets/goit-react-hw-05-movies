@@ -3,7 +3,7 @@ import { BASE_URL, KEY } from '../utils/constants';
 async function fetchWithErrorHandling(url = '', config = {}) {
   const response = await fetch(url, config);
 
-  return response.status === 200
+  return response.status === 200 || 201
     ? await response.json()
     : Promise.reject(new Error('Not found'));
 }
@@ -41,5 +41,24 @@ export function fetchMovieReviews({ movieId }) {
 export function fetchCastById({ castId }) {
   return fetchWithErrorHandling(
     `${BASE_URL}person/${castId}?api_key=${KEY}&language=en-US`,
+  );
+}
+
+export function getGuestSessionId() {
+  return fetchWithErrorHandling(
+    `${BASE_URL}authentication/guest_session/new?api_key=${KEY}`,
+  );
+}
+
+export function postMovieRate({ movieId, sessionId, value }) {
+  return fetchWithErrorHandling(
+    `${BASE_URL}movie/${movieId}/rating?api_key=${KEY}&guest_session_id=${sessionId}`,
+    {
+      method: 'POST',
+      body: JSON.stringify({ value }),
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    },
   );
 }

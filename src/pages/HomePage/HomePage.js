@@ -101,7 +101,6 @@ function HomePage() {
           onChange={handleParamsChange}
         ></input>
       </div>
-
       {movies && movies.length && (
         <>
           <Gallery

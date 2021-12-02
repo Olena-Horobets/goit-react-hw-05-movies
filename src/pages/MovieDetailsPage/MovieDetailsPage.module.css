@@ -20,6 +20,7 @@
 
 .subtitle {
   color: var(--white-color);
+  display: inline-block;
 }
 
 .tagline {
@@ -49,7 +50,7 @@
 }
 
 .overview {
-  width: 420px;
+  width: 450px;
 }
 
 .genres {
@@ -69,6 +70,15 @@
 }
 
 /* rating */
+.ratingWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contentInlineBlock {
+  display: inline-block;
+}
+
 .rating {
   position: relative;
   width: 150px;
