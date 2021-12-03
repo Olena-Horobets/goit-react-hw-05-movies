@@ -1,5 +1,4 @@
 import s from './Reviews.module.css';
-import { ReactComponent as ReactSprite } from '../../images/sprite.svg';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -8,6 +7,7 @@ import { ShortenTextHook } from 'hooks/shortenTextHook';
 import { fetchMovieReviews } from 'services/serviceAPI';
 import { parseSlug } from 'services/serviceSlugify';
 import { getDateString } from 'services/serviceDateHandler';
+import { Button } from 'components/Button/Button';
 
 function Reviews() {
   const { slug } = useParams();
@@ -41,7 +41,6 @@ function Reviews() {
 
   return review ? (
     <div className={s.wrapper}>
-      <ReactSprite />
       <div>
         <h4 className={s.title}>
           <a
@@ -65,26 +64,20 @@ function Reviews() {
       {/* slider for more than one review */}
       {reviews.length > 1 && (
         <>
-          <button
-            className={s.leftSwipeBtn}
+          <Button
+            styledClass="leftSwipeBtn"
             type="button"
             onClick={onChangeReview}
-            data-action="previous"
-          >
-            <svg width="30" height="30">
-              <use href="#icon-arrow-left"></use>
-            </svg>
-          </button>
-          <button
-            className={s.rightSwipeBtn}
+            dataAction="previous"
+            icon="#icon-arrow-left"
+          />
+          <Button
+            styledClass="rightSwipeBtn"
             type="button"
             onClick={onChangeReview}
-            data-action="next"
-          >
-            <svg width="30" height="30">
-              <use href="#icon-arrow-right"></use>
-            </svg>
-          </button>
+            dataAction="next"
+            icon="#icon-arrow-right"
+          />
         </>
       )}
     </div>

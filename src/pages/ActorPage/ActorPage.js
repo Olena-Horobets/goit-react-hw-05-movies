@@ -23,6 +23,7 @@ function ActorPage() {
 
   const { slug } = useParams();
   const castId = parseSlug(slug);
+  const desktop = window.innerWidth >= 1200;
 
   const [status, setStatus] = useState(STATUS.IDLE);
   const [actor, setActor] = useState({});
@@ -43,10 +44,11 @@ function ActorPage() {
       <div className={s.container}>
         {pastHistory && (
           <Button
-            styledClass="backBtn"
+            styledClass={desktop ? 'backBtn' : 'mobileBackBtn'}
             type="button"
             onClick={onGoBackClick}
-            text={`back to ${keyWord}`}
+            text={desktop ? `back to ${keyWord}` : ''}
+            icon={!desktop ? '#icon-arrow-left' : ''}
           />
         )}
 

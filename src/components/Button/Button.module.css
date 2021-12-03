@@ -1,3 +1,4 @@
+/* main btn styles */
 .btn {
   display: inline-block;
   color: var(--transparent-white);
@@ -22,6 +23,7 @@
   color: var(--transparent-white);
 }
 
+/* go back main btn */
 .backBtn {
   composes: btn;
   position: absolute;
@@ -29,6 +31,7 @@
   left: 40px;
 }
 
+/* show / hide content btn */
 .showAll {
   composes: btn;
   font-weight: 100;
@@ -38,6 +41,7 @@
   border: 2px solid;
 }
 
+/* search input btn */
 .clearBtn {
   color: var(--white-color);
   border: none;
@@ -63,4 +67,42 @@
 
 .activeClearBtn:active {
   opacity: 1;
+}
+
+/* arrow btn */
+.swipeBtn {
+  position: absolute;
+  top: 250px;
+  display: inline-flex;
+  margin: 0;
+  padding: 10;
+  border: none;
+  background-color: transparent;
+  color: var(--extra-tr-white);
+
+  transition: color 130ms ease-out;
+}
+
+.swipeBtn:hover {
+  color: var(--accent-color);
+}
+
+.swipeBtn:active {
+  color: var(--dark-color);
+}
+
+.leftSwipeBtn {
+  composes: swipeBtn;
+  left: -50px;
+}
+
+.rightSwipeBtn {
+  composes: swipeBtn;
+  right: -50px;
+}
+
+.mobileBackBtn {
+  composes: swipeBtn;
+  top: 40px;
+  left: 40px;
 }
