@@ -54,7 +54,7 @@ function MoviesPage() {
   const onInputChange = e => {
     setQuery(e.target.value);
     setPage(1);
-    const query = e.target.value.trim().toLowerCase();
+    const query = e.target.value;
 
     history.push({
       ...location,

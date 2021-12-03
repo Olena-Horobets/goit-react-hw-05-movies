@@ -1,0 +1,17 @@
+.ratingWrapper {
+  width: 250;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.ratingStars {
+  margin: 20px 0 0;
+}
+
+.starIcon {
+  position: relative;
+  width: 19px;
+  height: 19px;
+  fill: var(--accent-color);
+  margin: 2px;
+}

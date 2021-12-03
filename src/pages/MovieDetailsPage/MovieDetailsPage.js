@@ -12,7 +12,7 @@ import { IMG_URL, LOGO_URL, STATUS } from 'utils/constants';
 import Loader from 'components/Loader';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import { Button } from 'components/Button/Button';
-import { RateMovieHook } from 'services/serviceSessionId';
+import { RatingInput } from 'components/RatingInput/RatingInput';
 
 const Cast = lazy(() =>
   import('components/Cast/Cast.js' /* webpackChunkName: "cast-page" */),
@@ -113,9 +113,10 @@ function MovieDetailsPage() {
 
               <div className={s.contentInlineBlock}>
                 <h3 className={s.subtitle}>Leave your vote:</h3>
-                <RateMovieHook movieId={movieId} />
+                <RatingInput movieId={movieId} />
               </div>
             </div>
+
             {movie.production_companies?.length ? (
               <>
                 <h3 className={s.subtitle}>Production by:</h3>
